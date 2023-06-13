@@ -1,52 +1,87 @@
-# Задача 34:  Винни-Пух попросил Вас посмотреть, есть ли в его стихах ритм.
-# Поскольку разобраться в его кричалках не настолько просто, насколько легко он их придумывает,
-# Вам стоит написать программу. Винни-Пух считает, что ритм есть, если число слогов
-# (т.е. число гласных букв) в каждой фразе стихотворения одинаковое.
-# Фраза может состоять из одного слова, если во фразе несколько слов, то они разделяются дефисами.
-# Фразы отделяются друг от друга пробелами. Стихотворение  Винни-Пух вбивает в программу с клавиатуры.
-# В ответе напишите “Парам пам-пам”, если с ритмом все в порядке и “Пам парам”, если с ритмом все не в порядке
+# with open('phone book.txt', 'w', encoding='utf-8') as file:
+#     some_list = ['Максимов', 'Кирилл', '89059991122']
+#     for word in some_list:
+#         file.write(word + '\n')
+
+
+# with open('phone book.txt', 'a', encoding='utf-8') as file:
+#     some_list = ['Петров', 'Иван', '89115678899']
+#     for word in some_list:
+#         file.write(word + '\n')
+#     print('')
+
+# def imp():
+#     pass
 #
-# *Пример:*
+# def exp():
+#     pass
 #
-# **Ввод:** пара-ра-рам рам-пам-папам па-ра-па-да
-#     **Вывод:** Парам пам-пам
+# mode = input('Введите режим работы: 1 - импортирование, 2 - экспортирование: ')
+# if mode == 1:
+#     imp()
+# elif mode == 2:
+#     exp()
+# else:
+#     print('Некорректный режим работы')
 
-def rhythm(str):
-    str = str.split()
-    list_1 = []
-    for word in str:
-        sum_w = 0
-    for i in word:
-        if i in 'аеёиоуыэюя':
-            sum_w += 1
-            list_1.append(sum_w)
 
-            return len(list_1) == list_1.count(list_1[0])
+# =====================================================================================
 
-str_1 = input('Введите стихотворение: ')
-if rhythm(str_1):
-    print('Парам пам-пам')
+# def show_data(tel_num):
+#     with open('tel_num.txt', 'r', encoding='utf-8') as data:
+#         print(data.read())
+#         print('')
+
+# def export_data(tel_num):
+#     with open('tel_num.txt', 'r', encoding='utf-8') as data:
+#         tel_num = data.read()
+#         num = len(tel_num.split('\n'))
+#     with open('tel_num.txt', 'a', encoding='utf-8') as data:
+#         surname = input('Введите фамилию: ')
+#         name = input('Введите имя: ')
+#         phone_number = input('Введите номер телефона: ')
+#     data.write(f'{num} | {surname} | {name} | {phone_number}\n')
+#     print(f'Добавлена запись : {num} | {surname} | {name} | {phone_number}\n')
+
+# def imp(tel_num):
+#     with open('tel_num.txt', 'r', encoding='utf-8') as data:
+#         flag = 1
+#         name = input('фамилия: ')
+#         for line in data:
+#             if name in line:
+#                 for i in range(2):
+#                     flag = 0
+#                     print(data.readline()[:-1])
+#
+#         if flag: print('некорректная фамилия')
+
+print('Введите режим работы: 0 - Вывод всей книги, 1 - импортирование, 2 - экспортирование: ')
+mode =int(input("Режим: "))
+if mode == 0:
+    with open('tel_num.txt', 'r', encoding='utf-8') as data:
+        print(data.read())
+        print('')
+elif mode == 1:
+    with open('tel_num.txt', 'r', encoding='utf-8') as data:
+        flag = 1
+        name = input('фамилия: ')
+        for line in data:
+            if name in line:
+                for i in range(2):
+                    flag = 0
+                    print(data.readline()[:-1])
+
+        if flag: print('некорректная фамилия')
+elif mode == 2:
+    with open('tel_num.txt', 'r', encoding='utf-8') as data:
+        tel_num = data.read()
+
+    with open('tel_num.txt', 'a', encoding='utf-8') as data:
+        surname = input('Введите фамилию: ')
+        name = input('Введите имя: ')
+        phone_number = input('Введите номер телефона: ')
+        data.write(f'{surname}\n{name}\n{phone_number}\n')
+        print(f'Добавлена запись : {surname} \n {name} \n {phone_number}\n')
+    print('\n')
 else:
-    print('Пам парам')
-
-    # # Напишите    функцию    print_operation_table(operation, num_rows=6, num_columns=6),
-    # которая    принимает    в    качестве    аргумента    функцию, вычисляющую    элемент
-    # по    номеру    строки    и    столбца.Аргументы    num_rows    и    num_columns
-    #     число    сирок     и    столбцов    таблицы,    которые    должны    быть    распечатаны.Нумерация
-    # строк    и    столбцов    идет    с    единицы(подумайте,            почему    не    с    нуля).Примечание: бинарной
-    # операцией    называется    любая    операция, у    которой    ровно    два    аргумента, как, например, у
-    # операции    умножения.
-
-
-def printOperationTable(operation, numRows=3, numColumns=3):
-    if operation(1,1)==2:
-        print(1,end='\t')
-
-    for row in range(1, numRows+1):
-        for column in range(1, numColumns+1):
-            if operation(1,1)==2:
-                column=column-1
-            print(operation(row,column), end='\t')
-        print()
-
-print(printOperationTable(lambda x,y: x*y))
+    print('Некорректный режим работы')
